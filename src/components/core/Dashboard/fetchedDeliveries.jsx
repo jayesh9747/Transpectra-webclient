@@ -67,7 +67,7 @@ function FetchedDeliveries() {
               <h2 className="text-xl font-semibold mb-3 text-gray-800">
                   Order ID: {order.uniqueOrderId}
               </h2>
-              <div className='flex flex-row gap-x-4'>
+              <div className='flex flex-row gap-x-4 justify-around'>
               <div className="mb-1 flex flex-col gap-y-2 max-w-sm">
                 <p className="text-gray-600 mb-2">
                   <strong>Drop Off Address:</strong> {order.deliveries[0]?.dropoffLocation?.address || 'N/A'}
@@ -82,7 +82,7 @@ function FetchedDeliveries() {
                 </p>
               </div>
 
-              <div className="mb-1 flex flex-col gap-y-2">
+              <div className="mb-1 flex flex-col gap-y-0.5 max-w-[240px]">
                 <p className="text-gray-600 mb-2">
                   <strong>Products:</strong>{' '}
                   {order.selectedProducts.map((product) => product.productName).join(', ') || 'N/A'}

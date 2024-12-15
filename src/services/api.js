@@ -1,4 +1,5 @@
-const BASE_URL = "https://transpectra-backend.onrender.com/api/v1"
+// const BASE_URL = "https://transpectra-backend.onrender.com/api/v1"
+const BASE_URL="http://localhost:4000/api/v1"
 console.log("this is base url", BASE_URL);
 
 // AUTH ENDPOINTS
@@ -31,6 +32,10 @@ export const endpoints = {
   FETCH_DELIVERIES_FOR_WAREHOUSE:BASE_URL+"/delivery/warehouse",
   //Give out the route Details
   ROUTE_DETAILS:BASE_URL+"/routeTracking/route-tracking",
+  //RealTime-Tracking 
+  REAL_TIME:BASE_URL+"/routeTracking/real",
+  FETCH_DRIVERS:BASE_URL+"/driver/manufacturingUnit",
+  ASSIGN_DRIVER:BASE_URL+"/driver/assign-driver", 
 }
 
 export const profileEndpoints = {

@@ -44,7 +44,7 @@ function SupplierOrders() {
                             className="bg-white border border-gray-200 shadow-lg rounded-lg p-4 flex flex-col gap-y-4"
                         >
                             {/* Warehouse Information */}
-                            <div className="flex">
+                            <div className="flex  justify-between">
                                 {/* Warehouse Image */}
                                 <div className="w-1/3">
                                     <img
@@ -55,7 +55,7 @@ function SupplierOrders() {
                                 </div>
 
                                 {/* Warehouse Details */}
-                                <div className='flex flex-col'>
+                                <div className='flex flex-col mr-24'>
                                     <div className='flex gap-x-3 '>
                                     <div className="flex flex-col w-2/3 pl-4 pt-4 max-w-xs gap-y-3">
                                     <h3 className="text-lg font-bold text-richblue-600">{warehouseDetails?.warehouseName}</h3>

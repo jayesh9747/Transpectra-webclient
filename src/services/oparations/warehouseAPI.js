@@ -31,6 +31,40 @@ export function fetchWarehouseDetails(managerId) {
       }
     };
   }
+
+  export function fetchRealTimeData(deliveryId) {
+    return async (dispatch) => {
+      console.log("Fetching real-time data for delivery ID:", deliveryId);
+      const toastId = toast.loading("Fetching Real-time Tracking data ...");
+      try {
+        // Prepare the data in x-www-form-urlencoded format
+        const formData = new URLSearchParams();
+        formData.append("deliveryId", deliveryId);
+  
+        // Send the POST request with x-www-form-urlencoded content type
+        const response = await apiConnector("POST", endpoints.REAL_TIME, formData, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        });
+  
+        console.log("REAL_TIME API RESPONSE............", response);
+  
+        // Handle the response data
+        if (!response.data || !response.data.success) {
+          throw new Error(response.data.message || "Failed to fetch real-time data");
+        }
+  
+        // Dispatch actions or handle data as needed
+        toast.success("Real-time data fetched successfully!");
+      } catch (error) {
+        console.error("REAL_TIME API ERROR............", error);
+        toast.error(error.response?.data?.message || "Error fetching real-time data.");
+      } finally {
+        toast.dismiss(toastId);
+      }
+    };
+  }
   
 
   export async function fetchInventoryForWarehouse(token) {
