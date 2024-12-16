@@ -3,6 +3,7 @@ import './TrackDelivery.css'; // Optional CSS for custom styles
 import mapImage from '../../../assets/Images/map2.png'; // Import your map image
 
 const TrackDelivery = () => {
+  
   return (
     <div className="track-delivery-container">
       <h2 className='text-2xl font-inter font-bold pb-2 '>Live Delivery Tracking</h2>

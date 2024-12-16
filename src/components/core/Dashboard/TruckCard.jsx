@@ -15,10 +15,7 @@ const TruckCard = ({ truck, isAlternate }) => {
           <div className="flex justify-between">
             {/* Left Section */}
             <div className="flex flex-col gap-y-2 ml-6">
-              <h3 className="text-xl font-semibold text-blue-700">{truck.id}</h3>
-              <p className="text-md text-richblue-600">
-                Model: {truck.truckModel}
-              </p>
+              <h3 className="text-2xl font-semibold text-blue-700">{truck.id}</h3>
               <p className="text-md text-gray-600 text-richblue-600">
                 Driver: {truck.driverName}
               </p>

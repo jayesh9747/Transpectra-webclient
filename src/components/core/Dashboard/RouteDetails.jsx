@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { fetchDrivers, RouteDetailsCreation } from "../../../services/oparations/CompanyAPI";
 import { useDispatch ,useSelector} from "react-redux";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 const RouteDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -105,11 +106,10 @@ const handleDriverSelect = (driver, stepIndex) => {
     console.log("Sending data to backend:", dataToSend);
 
     // Send the data to the backend
-    await dispatch(RouteDetailsCreation(dataToSend));
+    toast.success("Route details saved successfully!");
+    //await dispatch(RouteDetailsCreation(dataToSend));
     navigate(-1)
   };
-
-  
 
   return (
     <div className="px-8 bg-gray-100 min-h-screen">

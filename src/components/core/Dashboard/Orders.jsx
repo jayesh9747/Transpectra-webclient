@@ -11,6 +11,7 @@ import { toast } from "react-hot-toast";
 const Orders = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
   const [qrModal, setQRModal] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState("Processed"); // Default filter
 
@@ -46,7 +47,7 @@ const Orders = () => {
     {
       const delId=order.deliveriesDetails[0].uniqueDeliveryId;
       console.log("Delivery Id Unique is :",order.deliveriesDetails[0].uniqueDeliveryId)
-      dispatch(fetchRealTimeData(delId,dispatch));
+      //dispatch(fetchRealTimeData(delId,dispatch));
       navigate(`/dashboard/track-delivery`);
     }
 
@@ -56,9 +57,21 @@ const Orders = () => {
 
   // Filter orders based on the selected filter
   const filteredOrders = orderList.filter((order) => {
-    if (selectedFilter === "All") return true;
-    return selectedFilter === "Processed" ? order.orderStatus === 'Processing' : order.orderStatus === 'pending';
+    // Check if the order matches the selected filter
+    const filterMatch =
+      selectedFilter === "Processed"
+        ? order.orderStatus === "Processing"
+        : order.orderStatus === "pending";
+  
+    // Check if the order matches the search term
+    const searchMatch =
+      order.uniqueOrderId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.manufacturerName.toLowerCase().includes(searchTerm.toLowerCase());
+  
+    // Return orders that match both the filter and the search term
+    return filterMatch && searchMatch;
   });
+  
 
   return (
     <div className="px-6">
@@ -79,6 +92,8 @@ const Orders = () => {
           type="text"
           placeholder="Search by order number or manufacturer"
           className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
