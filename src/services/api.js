@@ -1,5 +1,5 @@
-// const BASE_URL = "https://transpectra-backend.onrender.com/api/v1"
-const BASE_URL="http://localhost:4000/api/v1"
+const BASE_URL = "https://transpectra-backend.onrender.com/api/v1"
+//const BASE_URL="http://localhost:4000/api/v1"
 console.log("this is base url", BASE_URL);
 
 // AUTH ENDPOINTS
