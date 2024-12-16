@@ -128,7 +128,7 @@ const ProductSelectionPage = () => {
               <h2 className="text-lg font-semibold">{product.name}</h2>
               <span className="text-gray-600">Current Qty: {product.predictedQuantity}</span>
             </div>
-            <p className="text-sm mt-2">Predicted Quantity by AI: {product.category}</p>
+            <p className="text-sm mt-2">Predicted Quantity by AI: 120</p>
             <div className="mt-3">
               <label htmlFor={`quantity-${product.id}`} className="block text-sm font-medium">
                 Enter quantity to order:

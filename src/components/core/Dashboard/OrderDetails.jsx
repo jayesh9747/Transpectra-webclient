@@ -24,87 +24,87 @@ function OrderDetails() {
           steps: [
             {
                 step: 1,
-                from: "Mumbai ",
+                from: "Nanded",
                 to: "Ahemdabad",
-                by: "road",
-                distance: 522,
-                expectedTime: "11 hours",
-                cost: 10000,
-                arrivalDate: "2024-12-04",
+                by: "air",
+                distance: 651,
+                expectedTime: "1 hour",
+                cost: 4499,
+                arrivalDate: "2024-17-04",
             },
             {
                 step: 2,
                 from: "Ahemdabad",
-                to: "Delhi",
-                by: "air",
-                distance: 775,
+                to: "Surat",
+                by: "rail",
+                distance: 228,
                 expectedTime: "2 hours",
-                cost: 8000,
-                arrivalDate: "2024-12-04",
+                cost: 650,
+                arrivalDate: "2024-18-04",
             },
           ],
-          totalCarbonEmission: 20,
-          totalTimeTaken: "13 hours",
-          expectedDelivery: "2024-12-04",
-          totalCost: 18000,
+          totalCarbonEmission: 112,
+          totalTimeTaken: "3 hours",
+          expectedDelivery: "2024-18-04",
+          totalCost: 5299,
         },
         {
           routeId: "route2",
           steps: [
             {
                 step: 1,
-                from: "Mumbai",
-                to: "Udaipur",
+                from: "Nanded",
+                to: "Pune",
                 by: "rail",
-                distance: 1000,
-                expectedTime: "14 hours",
-                cost: 3000,
-                arrivalDate: "2024-12-05",
+                distance: 450,
+                expectedTime: "13 hours",
+                cost: 300,
+                arrivalDate: "2024-18-05",
             },
             {
                 step: 2,
-                from: "Udaipur",
-                to: "Delhi",
+                from: "Pune",
+                to: "Surat",
                 by: "road",
-                distance: 675,
-                expectedTime: "11 hours",
-                cost: 14000,
-                arrivalDate: "2024-12-05",
+                distance: 280,
+                expectedTime: "4 hours",
+                cost: 590,
+                arrivalDate: "2024-19-05",
             },
           ],
-          totalCarbonEmission: 30,
-          totalTimeTaken: "25 hours",
-          expectedDelivery: "2024-12-05",
-          totalCost: 17000,
+          totalCarbonEmission: 65,
+          totalTimeTaken: "17 hours",
+          expectedDelivery: "2024-19-05",
+          totalCost: 730,
         },
         {
           routeId: "route3",
           steps: [
             {
                 step: 1,
-                from: "Mumbai",
-                to: "Nashik",
+                from: "Nanded",
+                to: "Mumbai",
                 by: "rail",
-                distance: 150,
-                expectedTime: "3  hours",
-                cost: 500,
-                arrivalDate: "2024-12-06",
+                distance: 610,
+                expectedTime: "13  hours",
+                cost: 300,
+                arrivalDate: "2024-18-06",
             },
             {
                 step: 2,
-                from: "Nashik",
-                to: "Delhi",
-                by: "air",
-                distance: 3000,
-                expectedTime: "2 hours",
-                cost: 4200,
-                arrivalDate: "2024-12-06",
+                from: "Mumbai",
+                to: "Surat",
+                by: "sea",
+                distance: 275,
+                expectedTime: "5 hours",
+                cost: 420,
+                arrivalDate: "2024-19-06",
             },
           ],
-          totalCarbonEmission: 40,
-          totalTimeTaken: "5 hours",
-          expectedDelivery: "2024-12-06",
-          totalCost: 4700,
+          totalCarbonEmission: 78,
+          totalTimeTaken: "18 hours",
+          expectedDelivery: "2024-19-06",
+          totalCost: 720,
         },
       ];
     
@@ -566,8 +566,8 @@ function OrderDetails() {
                 >
                     <strong>Expected Delivery:</strong> {route.expectedDelivery}
                 </p>
-                <div className='bg-caribbeangreen-50 mt-2 p-1 flex gap-x-2 items-center rounded-md'>
-                    <HiSparkles className='text-white ml-3'/>
+                <div className='bg-caribbeangreen-50 mt-2 p-1 flex gap-x-1 items-center rounded-md'>
+                    <HiSparkles className='text-white ml-1'/>
                     <p
                         className={`${
                             selectedRoute?.routeId === route.routeId
@@ -575,7 +575,7 @@ function OrderDetails() {
                                 : "text-gray-800"
                         } `}
                     >
-                        <strong>Carbon Emission:</strong> {route.totalCarbonEmission} kg
+                        <strong>Carbon Emission:</strong> {route.totalCarbonEmission} kcal
                     </p>
                 </div>
             </div>

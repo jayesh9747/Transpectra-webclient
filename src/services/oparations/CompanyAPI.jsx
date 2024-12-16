@@ -5,6 +5,7 @@ import { setLoading, setcompanyDetails } from "../../slices/companySlice";
 import { setManufacturers } from "../../slices/manufatcurerSlice";
 import { setorderDetails } from "../../slices/orderSlice";
 import { setdeliveryDetails } from "../../slices/deliverySlice";
+import { setdrivers } from "../../slices/driverSlice";
 
 export function fetchCompanyDetails(managerId) {
   return async (dispatch) => {
@@ -158,6 +159,34 @@ export function RouteDetailsCreation(dataToSend) {
       toast.error(error.response?.data?.message || "Could not update Route Details");
     } finally {
       toast.dismiss(toastId);
+    }
+  };
+}
+
+export function fetchDrivers(managerId) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Fetching all the Drivers...");
+    try {
+      // Call the API to fetch manufacturer details
+      const response = await apiConnector("GET",`${endpoints.FETCH_DRIVERS}/${managerId}/availableDrivers`);
+      console.log("FETCH_DRIVERS API RESPONSE............", response);
+      // Validate response structure
+      if (response?.data) {
+        // Save manufacturer details to Redux store
+        dispatch(setdrivers(response.data.data));
+        toast.success("Drivers fetched successfully");
+        return response.data;
+      } else {
+        console.error("Invalid response structure:", response);
+        throw new Error("Invalid response structure");
+      }
+    } catch (error) {
+      console.error("FETCH_DRIVERS API ERROR............", error);
+      toast.error("Could not fetch Drivers");
+    } finally {
+      // Dismiss the loading toast and reset loading state
+      toast.dismiss(toastId);
+      dispatch(setLoading(false));
     }
   };
 }

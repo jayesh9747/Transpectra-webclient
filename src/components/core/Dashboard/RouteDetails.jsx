@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { RouteDetailsCreation } from "../../../services/oparations/CompanyAPI";
-import { useDispatch } from "react-redux";
+import { fetchDrivers, RouteDetailsCreation } from "../../../services/oparations/CompanyAPI";
+import { useDispatch ,useSelector} from "react-redux";
+import { useEffect } from "react";
 const RouteDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -10,6 +11,53 @@ const RouteDetails = () => {
   const deliveryRoutes = location.state?.routes || [];
   const routeTrackingid = deliveryDetails[0]?.routeTrackingid || null;
   const deliverID = deliveryDetails[0]?._id;
+  const company = useSelector((state) => state.company?.company || null);
+  const managerId = company?._id;
+  const drivers=useSelector((state)=>state.driver?.driver || null);
+  console.log("All the available drivers are:",drivers)
+
+  useEffect(() => {
+    if (managerId) {
+      console.log("got the ID and dispatching the function ",managerId)
+      dispatch(fetchDrivers(managerId));
+    }
+  }, [dispatch, managerId]);
+  const [filteredDrivers, setFilteredDrivers] = useState([]);
+const [searchTerm, setSearchTerm] = useState("");
+const [showDropdown, setShowDropdown] = useState(false);
+const [selectedDriver, setSelectedDriver] = useState(null);
+
+useEffect(() => {
+  if (drivers && drivers.length > 0) {
+    setFilteredDrivers(drivers);
+  }
+}, [drivers]);
+
+useEffect(() => {
+  if (searchTerm.trim() && Array.isArray(drivers)) {
+    const results = drivers.filter((driver) =>
+      `${driver.firstName} ${driver.lastName}`.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
+    setFilteredDrivers(results);
+  } else {
+    setFilteredDrivers(drivers || []); // Fallback to an empty array if drivers is undefined
+  }
+}, [searchTerm, drivers]);
+
+
+const handleInputFocus = () => {
+  if (!selectedDriver) {
+    setShowDropdown(true);
+    setFilteredDrivers(drivers); // Show full list on focus
+  }
+};
+
+const handleDriverSelect = (driver, stepIndex) => {
+  setSelectedDriver(driver);
+  setSearchTerm(`${driver.firstName} ${driver.lastName}`); // Display the selected name in the input
+  setShowDropdown(false); 
+  handleInputChange(stepIndex, "driver", driver._id); // Pass driver ID to handleInputChange
+};
 
   const [routeDetails, setRouteDetails] = useState(
     deliveryRoutes.map((route) => ({
@@ -61,6 +109,8 @@ const RouteDetails = () => {
     navigate(-1)
   };
 
+  
+
   return (
     <div className="px-8 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
@@ -109,20 +159,44 @@ const RouteDetails = () => {
               <div className="mt-2">
                 {/* Conditional Fields */}
                 {step.by === "road" && (
-                  <div className="mb-4 mx-4">
-                    <label className="block text-gray-700">Assign Driver</label>
-                    <input
-                      type="text"
-                      value={step.trackingDetails?.driver || ""}
-                      disabled={step.isCompleted}
-                      onChange={(e) =>
-                        handleInputChange(index, "driver", e.target.value)
-                      }
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Enter driver's name"
-                    />
-                  </div>
-                )}
+    <div className="mb-4 mx-4 relative">
+    <label className="block text-gray-700">Assign Driver</label>
+    <input
+      type="text"
+      value={searchTerm}
+      disabled={step.isCompleted}
+      onFocus={handleInputFocus}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Search and select driver's name"
+    />
+
+    {showDropdown && (
+      <ul className="absolute z-10 bg-white border border-gray-300 rounded-lg mt-1 w-full max-h-40 overflow-y-auto">
+        {Array.isArray(filteredDrivers) &&
+  filteredDrivers.map((driver) => (
+    <li
+      key={driver._id}
+      className="cursor-pointer hover:bg-gray-200 px-2 py-1"
+      onClick={() => handleDriverSelect(driver)}
+    >
+      {driver.firstName} {driver.lastName}
+    </li>
+  ))}
+
+        {filteredDrivers.length === 0 && (
+          <li className="px-4 py-2 text-gray-500">No drivers found</li>
+        )}
+      </ul>
+    )}
+
+    {selectedDriver && (
+      <div className="mt-2 text-sm text-gray-600">
+        Selected Driver: {selectedDriver.firstName} {selectedDriver.lastName}
+      </div>
+    )}
+  </div>
+)}
                 {step.by === "rail" && (
                   <div className="mb-4 mx-4">
                     <label className="block text-gray-700">Train FNR Number</label>

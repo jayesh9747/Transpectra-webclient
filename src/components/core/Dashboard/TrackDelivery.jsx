@@ -1,6 +1,6 @@
 import React from 'react';
 import './TrackDelivery.css'; // Optional CSS for custom styles
-import mapImage from '../../../assets/Images/map1.png'; // Import your map image
+import mapImage from '../../../assets/Images/map2.png'; // Import your map image
 
 const TrackDelivery = () => {
   return (
@@ -10,7 +10,7 @@ const TrackDelivery = () => {
       {/* Map Section */}
       <div className="map-section">
         <img src={mapImage} alt="Live Driver Location" className="mx-auto" />
-        <p className="live-location-text">Driver is currently near Panipat, en route to Gurgaon</p>
+        <p className="live-location-text">Parcel is currently near Pune, en route to Mumbai</p>
       </div>
       
       {/* Delivery Route Tracking */}
@@ -21,9 +21,9 @@ const TrackDelivery = () => {
             <span>✔</span>
           </div>
           <div className="checkpoint-details">
-            <h4>Step 1: Shipped from Chennai Port to Mumbai Port</h4>
-            <p>Shipment was transported via the vessel "MV Chennai Star".</p>
-            <small>Landed at Mumbai Port on 12th October 2024.</small>
+            <h4>Step 1: Shipped from Nanded Station to Pune Station</h4>
+            <p>Shipment was transported via the train "Panvel Express".</p>
+            <small>Landed at Pune Station on 18th December 2024.</small>
           </div>
         </div>
         
@@ -35,9 +35,9 @@ const TrackDelivery = () => {
             <span>✔</span>
           </div>
           <div className="checkpoint-details">
-            <h4>Step 2: Transported by Rail from Mumbai to Delhi</h4>
-            <p>The shipment was loaded on Train 2024 "Mumbai Express" to Tughlakabad Rail Terminal, Delhi.</p>
-            <small>Arrived at Tughlakabad Rail Terminal on 16th October 2024.</small>
+            <h4>Step 2: Transported by Road from Pune to Surat</h4>
+            <p>The shipment was loaded on Truck going via Mumbai.</p>
+            <small>Arrived at Mumbai on 18th December 2024.</small>
           </div>
         </div>
         
@@ -49,9 +49,9 @@ const TrackDelivery = () => {
             <span>⏳</span>
           </div>
           <div className="checkpoint-details">
-            <h4>Step 3: Transported by Truck to Bharat Logistics, Gurgaon</h4>
-            <p>The shipment is currently being transported by truck from Delhi to Gurgaon.</p>
-            <small>Expected delivery to warehouse on 20th October 2024.</small>
+            <h4>Step 3: Transported by Truck to Gujrat Super Warehouse</h4>
+            <p>The shipment is currently being transported by truck from Mumbai to Surat.</p>
+            <small>Expected delivery to warehouse on 19th December 2024.</small>
           </div>
         </div>
       </div>

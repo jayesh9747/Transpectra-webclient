@@ -97,7 +97,7 @@ function FetchedDeliveries() {
                 onClick={() => handleNavigate(order.deliveries,order.deliveries[0]?.deliveryRoutes)}
                 className="mt-1 w-full bg-blu text-white py-2 px-4 rounded-lg hover:bg-dblue transition-all duration-300"
               >
-                Fulfill Route Details
+                Confirm Route Details
               </button>
               </div>
               </div>
