@@ -44,7 +44,8 @@ function Inventory() {
     if (quantity < threshold + 10) return "Limited Stock";
     return "In Stock";
   }
-  const currentMonth = new Date().toLocaleString("en-US", { month: "long" });
+  //const currentMonth = new Date().toLocaleString("en-US", { month: "long" });
+  const currentMonth="November"
   console.log(currentMonth)
   
   const filteredInventory = inventory.filter((item) => {
@@ -142,7 +143,7 @@ function Inventory() {
       <div className="mt-4">
         <table className="min-w-full bg-white">
           <thead>
-            <tr className="bg-blu text-white text-xs font-medium">
+            <tr className="bg-blu text-white text-xs font-medium ">
               <th className="py-2 px-4 border-b-2 border-blue-500">Product Name</th>
               <th className="py-2 px-4 border-b-2 border-blue-500">Quantity</th>
               <th className="py-2 px-4 border-b-2 border-blue-500">Product Threshold</th>
@@ -161,7 +162,7 @@ function Inventory() {
               filteredInventory.map((item, index) => (
                 <tr
                   key={item.id}
-                  className={`${index % 2 === 0 ? "bg-[#edf5ffd0]" : "bg-white"} text-richblue-600 text-xs font-inter`}
+                  className={`${index % 2 === 0 ? "bg-[#edf5ffd0]" : "bg-white"} cursor-pointer text-richblue-600 text-xs font-inter`}
                   onClick={() =>
                     navigate("/dashboard/product-order", {
                       state: {
