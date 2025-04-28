@@ -45,7 +45,7 @@ function Inventory() {
     return "In Stock";
   }
   //const currentMonth = new Date().toLocaleString("en-US", { month: "long" });
-  const currentMonth="November"
+  const currentMonth="December"
   console.log(currentMonth)
   
   const filteredInventory = inventory.filter((item) => {
